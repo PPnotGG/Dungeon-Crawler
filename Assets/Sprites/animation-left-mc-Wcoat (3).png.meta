@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f2489f0afa063ba4c849df8b5f1a5b42
+guid: 4779519909faf8842960f30f9e9f6a63
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,12 +129,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: animation-left-mc-Wcoat_0
+      name: animation-left-mc-Wcoat (3)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 18
+        width: 17
         height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -143,19 +143,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90676adc1569ad446bea468d0421b4af
-      internalID: -1431047878
+      spriteID: 33f08d6501b0df2469e8e9857d3c7a17
+      internalID: -1612249154
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation-left-mc-Wcoat_1
+      name: animation-left-mc-Wcoat (3)_1
       rect:
         serializedVersion: 2
-        x: 18
+        x: 17
         y: 0
-        width: 18
+        width: 17
         height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -164,19 +164,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e43b6333c314cd48b911e3f822e0b6b
-      internalID: 1254506376
+      spriteID: cdd1386de410e274491db39fc93025b9
+      internalID: -1516602870
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation-left-mc-Wcoat_2
+      name: animation-left-mc-Wcoat (3)_2
       rect:
         serializedVersion: 2
-        x: 36
+        x: 34
         y: 0
-        width: 18
+        width: 17
         height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -185,19 +185,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3e1f2e6ef29585428dea9313facd38f
-      internalID: 325584501
+      spriteID: ab40303e22b6ac34991cd9c939d64cb0
+      internalID: 1260685286
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation-left-mc-Wcoat_3
+      name: animation-left-mc-Wcoat (3)_3
       rect:
         serializedVersion: 2
-        x: 54
+        x: 51
         y: 0
-        width: 18
+        width: 17
         height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -206,8 +206,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d092280c38f309428ffed24a882e1bf
-      internalID: 656976645
+      spriteID: 15d74e8e2fca9ce42bafafc51b27dc42
+      internalID: -1538963860
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      animation-left-mc-Wcoat_3: 656976645
-      animation-left-mc-Wcoat_2: 325584501
-      animation-left-mc-Wcoat_0: -1431047878
-      animation-left-mc-Wcoat_1: 1254506376
+      animation-left-mc-Wcoat (3)_0: -1612249154
+      animation-left-mc-Wcoat (3)_3: -1538963860
+      animation-left-mc-Wcoat (3)_2: 1260685286
+      animation-left-mc-Wcoat (3)_1: -1516602870
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8ff78bc7d96c9a348a3b9525660e78a6
+guid: dff4bf114747c7f4cb29926d7d502d5c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -129,12 +129,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: animation-right-mc-Wcoat_0
+      name: animation-right-mc-Wcoat (3)_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 18
+        width: 17
         height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -143,19 +143,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46a1209eff3077946bc5330cbc86f42d
-      internalID: 1122434638
+      spriteID: ee3c65031e3164446a5c50c125183121
+      internalID: -1164109285
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation-right-mc-Wcoat_1
+      name: animation-right-mc-Wcoat (3)_1
       rect:
         serializedVersion: 2
-        x: 18
+        x: 17
         y: 0
-        width: 18
+        width: 17
         height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -164,19 +164,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 812a7f3faa0049e4891a6805ebe7eec1
-      internalID: -653228556
+      spriteID: 6b6f9ed9ff0aefa409776d11032ce5ae
+      internalID: -1415645047
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation-right-mc-Wcoat_2
+      name: animation-right-mc-Wcoat (3)_2
       rect:
         serializedVersion: 2
-        x: 36
+        x: 34
         y: 0
-        width: 18
+        width: 17
         height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -185,19 +185,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aa16ad51d43673c45ab0ba588440639c
-      internalID: -1231805690
+      spriteID: f0cb14aac57fd1544a36de714a1cf78b
+      internalID: -1515387025
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: animation-right-mc-Wcoat_3
+      name: animation-right-mc-Wcoat (3)_3
       rect:
         serializedVersion: 2
-        x: 54
+        x: 51
         y: 0
-        width: 18
+        width: 17
         height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -206,8 +206,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60e19c43564bacf458ba5b93f34b6f72
-      internalID: 978523933
+      spriteID: e0730c1eb6653b14cb90af1b1b958ed0
+      internalID: 1668962672
       vertices: []
       indices: 
       edges: []
@@ -223,10 +223,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      animation-right-mc-Wcoat_3: 978523933
-      animation-right-mc-Wcoat_2: -1231805690
-      animation-right-mc-Wcoat_1: -653228556
-      animation-right-mc-Wcoat_0: 1122434638
+      animation-right-mc-Wcoat (3)_1: -1415645047
+      animation-right-mc-Wcoat (3)_2: -1515387025
+      animation-right-mc-Wcoat (3)_0: -1164109285
+      animation-right-mc-Wcoat (3)_3: 1668962672
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
