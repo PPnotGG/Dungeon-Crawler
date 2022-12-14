@@ -6,8 +6,6 @@ public class PlayerScript : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 direction;
-    private float HorizontalMove = 0f;
-    private float VerticalMove = 0f;
 
     [Header("Player movement settings")]
     [Range(0f, 10f)] public float speed = 1f;
@@ -15,13 +13,11 @@ public class PlayerScript : MonoBehaviour
     [Header("Player animation settings")]
     public Animator animator;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         direction.x = Input.GetAxis("Horizontal");
