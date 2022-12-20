@@ -6,6 +6,7 @@ public class CloseEnemyScript : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Transform target;
+    private Vector2 direction;
 
     [Header("Enemy movement settings")]
     [Range(0f, 10f)] public float speed = 1f;
@@ -21,7 +22,10 @@ public class CloseEnemyScript : MonoBehaviour
     void FixedUpdate()
     {
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        animator.SetFloat("Horizontal", target.position.x - transform.position.x);
-        animator.SetFloat("Vertical", target.position.y - transform.position.y);
+        direction.x = target.position.x - transform.position.x;
+        direction.y = target.position.y - transform.position.y;
+        animator.SetFloat("Horizontal", direction.x);
+        animator.SetFloat("Vertical", direction.y);
+        animator.SetFloat("Speed", direction.sqrMagnitude);
     }
 }

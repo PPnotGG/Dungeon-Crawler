@@ -6,6 +6,7 @@ public class PlayerScript : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 direction;
+    public bool movementPermission = true;
 
     [Header("Player movement settings")]
     [Range(0f, 10f)] public float speed = 1f;
@@ -29,6 +30,9 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        if (movementPermission)
+        {
+            rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+        }
     }
 }
