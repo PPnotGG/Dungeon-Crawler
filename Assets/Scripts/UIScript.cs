@@ -44,6 +44,10 @@ public class UIScript : MonoBehaviour
         energyText.text = energyStr;
         healthStr = healthInt.ToString();
         healthText.text = healthStr;
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("Menu");
+        }
     }
 
     public void Respawn()
