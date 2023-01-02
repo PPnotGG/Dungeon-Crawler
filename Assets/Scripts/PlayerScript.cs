@@ -7,18 +7,32 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D rb;
     public GameObject player;
     private Vector2 direction;
-    private bool isDashButtonDown = false;
     private Vector2 lastDir;
+    //Новый рывок не оправдал ожиданий
+    //private Vector2 DashDir;
+    //Параметры старого рывка
+    private bool isDashButtonDown = false;
     private RaycastHit2D raycastHit2D;
     private Vector2 dashPosition;
 
-    public bool movementPermission = true;
+    //Состояния
+    public enum State
+    {
+        Normal, 
+        Attacking,
+        //Dodging
+    }
+    //Хранение текущего состояния
+    public State state;
+
     public UIScript UI;
 
     [Header("Player movement settings")]
-    [Range(0f, 10f)] public float speed = 1f;
-    [SerializeField] public float dashDistance = 20f;
+    [SerializeField] public float speed = 1f;
+    [SerializeField] private float dashDistance = 20f;
     [SerializeField] private LayerMask dashLayerMask;
+    //[SerializeField] private float dashSpeed;
+    //private float actualDashSpeed;
 
     [Header("Player animation settings")]
     public Animator animator;
@@ -36,8 +50,11 @@ public class PlayerScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        state = State.Normal;
+        //actualDashSpeed = dashSpeed;
     }
 
+    //Старый рывок в виде телепортации
     private void Dash()
     {
         dashPosition = rb.position + lastDir * dashDistance;
@@ -45,17 +62,30 @@ public class PlayerScript : MonoBehaviour
         if (raycastHit2D.collider != null)
             dashPosition = raycastHit2D.point;
         rb.MovePosition(dashPosition);
-        UI.energyInt -= 25;
+        UI.energyInt -= 20;
         UI.refrRecTime = Time.time + 3f;
         UI.refreshFlag = false;
         isDashButtonDown = false;
     }
 
+    //Новый рывок
+    //private void NewDash()
+    //{
+    //    actualDashSpeed = dashSpeed;
+    //    state = State.Dodging;
+    //    DashDir = lastDir;
+    //    UI.energyInt -= 20;
+    //    UI.refrRecTime = Time.time + 3f;
+    //    UI.refreshFlag = false;
+    //}
+
+    //Проверка на нажатие кнопок атаки
     private void CheckForAttack()
     {
+        //Проверка на откат атаки (чтобы не спамить ими)
         if (Time.time >= nextAttackTime)
         {
-            movementPermission = true;
+            //Проверки на направление атаки и энергию
             if (Input.GetKeyDown(KeyCode.LeftArrow) && UI.energyInt >= 10)
             {
                 attackPoint = transform.Find("AttackPointLeft");
@@ -81,12 +111,13 @@ public class PlayerScript : MonoBehaviour
 
     private void Attack(string trigger)
     {
-        movementPermission = false;
-        animator.SetTrigger(trigger);
-        nextAttackTime = Time.time + attackTime;
-        UI.energyInt -= 10;
-        UI.refrRecTime = Time.time + 3f;
+        state = State.Attacking;  //Состояние атаки
+        animator.SetTrigger(trigger);  //Триггер для одной из четырех анимаций атак
+        nextAttackTime = Time.time + attackTime;  //Установка времени отката
+        UI.energyInt -= 10;  
+        UI.refrRecTime = Time.time + 3f;  //Откат восстановления энергии (Лучше перенести в UIScript)
         UI.refreshFlag = false;
+        //Проверка на то, ударил ли игрок кого-то
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -94,6 +125,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    //Скрипт для удобства отображения области атаки
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
@@ -101,6 +133,7 @@ public class PlayerScript : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
+    //Смерть
     public void Die()
     {
         player.SetActive(false);
@@ -108,23 +141,63 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        CheckForAttack();
-        direction = new Vector2(Input.GetAxis("Horizontal1"), Input.GetAxis("Vertical1")).normalized;
-        if (direction.y != 0 || direction.x != 0)
-            lastDir = direction;
-        animator.SetFloat("Horizontal", direction.x);
-        animator.SetFloat("Vertical", direction.y);
-        animator.SetFloat("Speed", direction.sqrMagnitude);
-        if (Input.GetKeyDown(KeyCode.Space) && UI.energyInt >= 25 && movementPermission)
-            isDashButtonDown = true;
+        switch (state)
+        {
+            case State.Normal:
+                CheckForAttack();
+                //Считывание нажатий игрока для управления моделькой
+                direction = new Vector2(Input.GetAxis("Horizontal1"), Input.GetAxis("Vertical1")).normalized;
+                //Получение последнего направления движения
+                if (direction.y != 0 || direction.x != 0)
+                    lastDir = direction;
+                //Анимации
+                animator.SetFloat("Horizontal", direction.x);
+                animator.SetFloat("Vertical", direction.y);
+                animator.SetFloat("Speed", direction.sqrMagnitude);
+                //Старый рывок
+                if (Input.GetKeyDown(KeyCode.Space) && UI.energyInt >= 20)
+                    isDashButtonDown = true;
+                //Проверка на новый рывок
+                //if (Input.GetKeyDown(KeyCode.Space) && UI.energyInt >= 20)
+                //    NewDash();
+                break;
+
+            case State.Attacking:
+                if (Time.time >= nextAttackTime)
+                    state = State.Normal;  //Переход в нормальное состояние
+                break;
+
+            //case State.Dodging:
+            //    //Значение убывания скорости при рывке
+            //    float dashSpeedDropMult = 15f;
+            //    //Самр убывание скорости
+            //    actualDashSpeed -= actualDashSpeed * dashSpeedDropMult * Time.deltaTime;
+            //    if (actualDashSpeed <= 6f)
+            //        state = State.Normal;  //Переход в нормальное состояние
+            //    break;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (movementPermission)
-            rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+        switch (state)
+        {
+            case State.Normal:
+                //Перемещение модельки
+                rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+                if (isDashButtonDown)
+                    Dash();
+                break;
 
-        if (isDashButtonDown)
-            Dash();
+            case State.Attacking:
+                //Стоять на месте
+                rb.velocity = Vector2.zero;
+                break;
+
+            //case State.Dodging:
+            //    //Рывок(новый)
+            //    rb.velocity = DashDir * actualDashSpeed;
+            //    break;
+        }
     }
 }

@@ -9,8 +9,10 @@ public class UIScript : MonoBehaviour
     private float refreshTime;
     private string energyStr = "100";
     private string healthStr = "2";
-    public int energyInt = 100;
-    public int healthInt = 2;
+    [Header("Player stats")]
+    [SerializeField] public int energyInt = 100;
+    [SerializeField] public int healthInt = 2;
+
     public Text energyText;
     public Text healthText;
     public bool refreshFlag = false;
@@ -20,6 +22,7 @@ public class UIScript : MonoBehaviour
 
     void Update()
     {
+        //Смерть игрока
         if (healthInt <= 0)
         {
             playerScript.Die();
@@ -27,6 +30,7 @@ public class UIScript : MonoBehaviour
         }
         if (refreshFlag)
         {
+            //Восстановление энергии со временем
             if (Time.time >= refreshTime)
             {
                 energyInt += 5;
@@ -40,18 +44,21 @@ public class UIScript : MonoBehaviour
         }
         if (Time.time >= refrRecTime)
             refreshFlag = true;
+        //Отображение параметров
         energyStr = energyInt.ToString();
         energyText.text = energyStr;
         healthStr = healthInt.ToString();
         healthText.text = healthStr;
+        //Выход в меню без сохранений
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SceneManager.LoadScene("Menu");
         }
     }
 
+    //Перезагрузка сцены
     public void Respawn()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Hub");
     }
 }

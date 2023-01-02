@@ -11,6 +11,7 @@ public class CameraControllerScript : MonoBehaviour
 
     private void Awake()
     {
+        //Поиск игрока
         if (this.playerTransform == null)
         {
             if (this.playerTag == "")
@@ -29,6 +30,7 @@ public class CameraControllerScript : MonoBehaviour
     {
         if (this.playerTransform)
         {
+            //Перемещение камеры за игроком
             Vector3 target = new Vector3()
             {
                 x = this.playerTransform.position.x,
