@@ -13,15 +13,30 @@ public class UIScript : MonoBehaviour
     [SerializeField] public int energyInt = 100;
     [SerializeField] public int healthInt = 2;
 
-    public Text energyText;
-    public Text healthText;
+    [Header("UI elements")]
+    [SerializeField] public Text energyText;
+    [SerializeField] public Text healthText;
+    [SerializeField] public GameObject DeathWarning;
+    [SerializeField] public Slider slider;
+
     public bool refreshFlag = false;
     public float refrRecTime = 0;
     public PlayerScript playerScript;
-    public GameObject DeathWarning;
+
+    public void SetEnergy(int energy)
+    {
+        slider.value = energy;
+    }
+
+    //Выход в хаб
+    public void Respawn()
+    {
+        SceneManager.LoadScene("Hub");
+    }
 
     void Update()
     {
+        SetEnergy(energyInt);
         //Смерть игрока
         if (healthInt <= 0)
         {
@@ -54,11 +69,5 @@ public class UIScript : MonoBehaviour
         {
             SceneManager.LoadScene("Menu");
         }
-    }
-
-    //Перезагрузка сцены
-    public void Respawn()
-    {
-        SceneManager.LoadScene("Hub");
     }
 }
